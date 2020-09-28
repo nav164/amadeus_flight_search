@@ -1,27 +1,52 @@
-# AmadeusFlightSearch
+# `Amadeus Flight Inspirational Search`
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+This project is an application to help travelers discover their next destination by finding the cheapest flight destinations from a specific city.
 
-## Development server
+```bash
+# This application answers the question:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+"What are the cheapest places to fly from Boston?
+```
 
-## Code scaffolding
+## Status
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Front-end : What's included
+> Dependencies
+- [x] Angular : 10.0.8
+- [x] Angular CLI : 10.0.8
+- [x] Angular material : 10.2.2
+- [x] typescript : 3.9.7
 
-## Build
+> Features
+- [x] Search Flights 
+- [x] Different search criteria
+- [x] Interceptor for error handling
+- [x] Interceptor to add jwt token into the header
+- [x] Interceptor for progress sppiner
+- [x] Tooltip to provide details of destination
+- [x] Feature to see the links in mat-dailog and copy the link to clipboard
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Getting Started
 
-## Running unit tests
+### Prerequisites
+You must have Node.js
+and its package manager (npm) installed. You can get them from [here][node].
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+# clone the repo
+unzip the folder
 
-## Running end-to-end tests
+# change directory
+cd amadeus-flight-search
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# install the repo with npm
+npm install
 
-## Further help
+# start the server
+npm start
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+in your browser go to [http://localhost:4200](http://localhost:4200) 
+
+## Enhancement can be done
+* We can write the jasmine unit test cases

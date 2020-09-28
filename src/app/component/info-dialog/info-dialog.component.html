@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Link details for flight dates & flight offers</h1>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+    <h3>Flight Dates</h3>
+    <p>{{data.flightDates}}</p>
+    <h3>Flight Offers</h3>
+    <p>{{data.flightOffers}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial [cdkCopyToClipboard]="value">Copy</button>
+</mat-dialog-actions>

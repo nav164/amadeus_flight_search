@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  root: 'https://test.api.amadeus.com/v1',
+  authUrl: '/security/oauth2/token',
+  flightDestination:'/shopping/flight-destinations',
+  clientId: '5WL6N6CNp8N4tO87WR0vJxbGUSlQmfgB',
+  clientSecret: 'GWAAB0abIIfnEutA'
 };
 
 /*

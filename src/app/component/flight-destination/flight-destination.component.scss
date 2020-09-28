@@ -1,0 +1,14 @@
+.flex-container, .row {
+    display: flex;
+}
+
+.col {
+    flex: 1;        /* distributes space on the line equally among items */
+  }
+.content {
+    margin-top: 30px;
+}
+
+.sub-container {
+    padding-right: 30px;
+}

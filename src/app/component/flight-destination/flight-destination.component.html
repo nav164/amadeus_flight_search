@@ -1,0 +1,65 @@
+<div class="mat-app-background basic-container">
+    <mat-card>
+        <mat-card-title>Search filters</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content class="content">
+            <form class="example-form">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Origin</mat-label>
+                            <input matInput placeholder="Ex. MAD" maxlength="3" 
+                            [(ngModel)]="origin" name="origin"
+                            (ngModelChange)="origin = $event.toUpperCase()">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter a departure date range</mat-label>
+                            <mat-date-range-input [formGroup]="departureDateForm" [rangePicker]="picker" [min]="minDate" [max]="maxDate">
+                                <input matStartDate  placeholder="Start date" formControlName="start">
+                                <input matEndDate placeholder="End date" formControlName="end">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                        <mat-slide-toggle [(ngModel)]="isNonStop" name="isNonStop">Non Stop</mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Max Price</mat-label>
+                            <input matInput placeholder="Ex. 200" [(ngModel)]="maxPrice" name="maxPrice">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>View by</mat-label>
+                            <mat-select [(ngModel)]="viewBy" name="viewBy">
+                                <mat-option *ngFor="let viewByOpt of viewByOptions" [value]="viewByOpt.value">{{viewByOpt.key}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <app-range-on-return (oneWayDataEmitter)="getOneWayData($event)"></app-range-on-return>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <section>
+                <div class="example-button-row">
+                    <button mat-raised-button color="primary" (click)="getFlights()">Search flights</button>
+                </div>
+            </section>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div class="mat-app-background basic-container" *ngIf="flightInspirationalResponse">
+    <app-data-table [inputData]="flightInspirationalResponse" (linkDetailsEmitter)="showLinkDetails($event)"></app-data-table>
+</div>
