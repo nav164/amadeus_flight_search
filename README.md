@@ -30,7 +30,9 @@ This project is an application to help travelers discover their next destination
 
 ### Prerequisites
 You must have Node.js
-and its package manager (npm) installed. You can get them from [here][node].
+and its package manager (npm) installed.
+
+### Steps
 
 ```bash
 # clone the repo
