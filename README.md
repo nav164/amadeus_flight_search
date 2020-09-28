@@ -3,7 +3,7 @@
 This project is an application to help travelers discover their next destination by finding the cheapest flight destinations from a specific city.
 
 ```bash
-# This application answers the question:
+This application answers the question:
 
 "What are the cheapest places to fly from Boston?
 ```
