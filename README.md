@@ -35,8 +35,8 @@ and its package manager (npm) installed.
 ### Steps
 
 ```bash
-# clone the repo
-unzip the folder
+# Unzip the provided zipped folder OR clone the repo
+https://github.com/nav164/amadeus_flight_search.git
 
 # change directory
 cd amadeus-flight-search
@@ -50,7 +50,7 @@ npm start
 ```
 in your browser go to [http://localhost:4200](http://localhost:4200) 
 
-## Enhancement can be done
-* We can write the jasmine unit test cases
-* All the labels can be reffered from en.json file under assets folder (Translate pipe can be used).
-* All the error message can be put in a constant file and can be reffered from there.
+## Enhancement in progress
+* Jasmine unit test cases (Karma)
+* All the labels in the application are moving en.json file under assets folder (Using translate pipe).
+* All the  error message are moving to constant file so that it can be reffered from a centralized place.
