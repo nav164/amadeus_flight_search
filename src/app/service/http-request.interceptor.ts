@@ -64,6 +64,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
    * @param error HttpErrorResponse | Error500
    */
   handleError(error: HttpErrorResponse | Error500) {
+    console.log('Error ---> ',error);
     if (error instanceof HttpErrorResponse) {
       if (error.status === 400) {
         this._snackBar.open(error.error.error_description, error.error.title, {
@@ -74,13 +75,34 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           'Invalid access token', {
           duration: 2000,
         });
+      } else if(error.status === 404) {
+        this.handleCustomError(error);
       }
     } else if (error.errors) {
-      error.errors.forEach(err => {
-        this._snackBar.open(err.detail, err.title, {
-          duration: 2000,
-        });
-      });
+      this.handleError500(error);
     }
+  }
+
+  /**
+   * Handles custom error messages
+   * @author Naveen
+   * @param error any
+   */
+  handleError500(error: Error500) {
+    error.errors.forEach(err => {
+      this._snackBar.open(err.detail, err.title, {
+        duration: 2000,
+      });
+    });
+  }
+
+  handleCustomError(error: HttpErrorResponse) {
+    console.log('Error 404 ---> ',error.error['errors'])
+    error.error['errors'].forEach(err => {
+      this._snackBar.open(err.detail, err.title, {
+        duration: 2000,
+        panelClass: 'my-custom-snackbar'
+      });
+    });
   }
 }

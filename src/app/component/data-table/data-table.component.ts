@@ -20,7 +20,8 @@ export class DataTableComponent implements OnInit {
   @Input() set inputData(value: FlightInspirationalResponse) {
     this._inputData = value;
     this.dataSource = new MatTableDataSource(this._inputData.data);
-    this.currencyUnit = Object.keys(this._inputData.dictionaries.currencies)[0];
+    if(this._inputData && this._inputData.dictionaries)
+      this.currencyUnit = Object.keys(this._inputData.dictionaries.currencies)[0];
   }
 
   @Output() linkDetailsEmitter = new EventEmitter<FlightDestinationLinks>();
