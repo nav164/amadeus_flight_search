@@ -55,3 +55,5 @@ in your browser go to [http://localhost:4200](http://localhost:4200)
 * All the labels in the application are moving en.json file under assets folder (Using translate pipe).
 * All the  error message are moving to constant file so that it can be reffered from a centralized place.
 * Refactoring scattered CSS and SCSS 
+
+> Note: Please leave any enhancement or suggestion below.
