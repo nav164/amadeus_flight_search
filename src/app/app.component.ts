@@ -20,12 +20,17 @@ export class AppComponent implements OnInit {
     this.listenToLoading();
   }
 
+  /**
+   * Subscribe to a behaviour subject variable from service 
+   * to set the local variable with boolean value.
+   * @author Naveen
+   * @returns void
+   */
   listenToLoading(): void {
     this._loading.loadingSub
       .pipe(delay(0)) // This prevents a ExpressionChangedAfterItHasBeenCheckedError for subsequent requests
       .subscribe((loading) => {
         this.loading = loading;
-        console.log('loading flag --> ',this.loading)
       });
   }
 }

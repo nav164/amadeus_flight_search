@@ -22,6 +22,14 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     private _loading: LoadingService,
     private _snackBar: MatSnackBar) { }
 
+  /**
+   * Intercept the http request and response, add token to the request header.
+   * Show and hide the progress spinner in between the request and response.
+   * Handle the server side errors.
+   * @author Naveen
+   * @param request HttpRequest<any>
+   * @param next HttpHandler
+   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     // Setting token in the header
@@ -50,18 +58,23 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       }));
   }
 
+  /**
+   * Handle the error in the response and show the error message in the snack bar.
+   * @author Naveen
+   * @param error HttpErrorResponse | Error500
+   */
   handleError(error: HttpErrorResponse | Error500) {
     if (error instanceof HttpErrorResponse) {
-      if(error.status === 400) {
+      if (error.status === 400) {
         this._snackBar.open(error.error.error_description, error.error.title, {
           duration: 2000,
         });
-      } else if(error.status === 401) {
-        this._snackBar.open('The access token provided in the Authorization header is invalid', 
-        'Invalid access token', {
+      } else if (error.status === 401) {
+        this._snackBar.open('The access token provided in the Authorization header is invalid',
+          'Invalid access token', {
           duration: 2000,
-      });
-    }
+        });
+      }
     } else if (error.errors) {
       error.errors.forEach(err => {
         this._snackBar.open(err.detail, err.title, {

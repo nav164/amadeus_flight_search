@@ -22,7 +22,8 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="destination">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
-            <td mat-cell *matCellDef="let element" [matTooltip]="getToolTipData(element.destination)"> {{element.destination ? element.destination : 'NA'}} </td>
+            <td mat-cell *matCellDef="let element" [matTooltip]="getToolTipData(element.destination)">
+                {{element.destination ? element.destination : 'NA'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="departureDate">

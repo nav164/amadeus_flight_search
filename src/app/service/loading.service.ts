@@ -13,6 +13,12 @@ export class LoadingService {
   loadingMap: Map<string, boolean> = new Map<string, boolean>();
   constructor() { }
 
+  /**
+   * Set the subject behaviour variable with boolean value.
+   * @author Naveen
+   * @param loading boolean
+   * @param url string
+   */
   setLoading(loading: boolean, url: string): void {
     if (!url) {
       throw new Error('The request URL must be provided to the LoadingService.setLoading function');

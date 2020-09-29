@@ -52,3 +52,5 @@ in your browser go to [http://localhost:4200](http://localhost:4200)
 
 ## Enhancement can be done
 * We can write the jasmine unit test cases
+* All the labels can be reffered from en.json file under assets folder (Translate pipe can be used).
+* All the error message can be put in a constant file and can be reffered from there.

@@ -1,23 +1,9 @@
-import { AfterViewInit, Component, ViewChild, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { FlightDestination } from 'src/app/model/flightDestination';
 import { FlightInspirationalResponse } from 'src/app/model/flightInspirationalResponse';
 import { MatPaginator } from '@angular/material/paginator';
 import { FlightDestinationLinks } from 'src/app/model/flightDestinationLinks';
-
-export interface InspirationalData {
-  position: string;
-  type: string;
-  origin: string;
-  destination: string;
-  departureDate: string;
-  returnDate: string;
-  price: string;
-  links: string;
-}
-
-const ELEMENT_DATA: InspirationalData[] = [];
 
 @Component({
   selector: 'app-data-table',
@@ -52,10 +38,21 @@ export class DataTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  /**
+   * This method will emit the FlightDestinationLinks object to its parent
+   * @author Naveen
+   * @param links FlightDestinationLinks
+   */
   showLinks(links: FlightDestinationLinks) {
     this.linkDetailsEmitter.emit(links);
   }
 
+  /**
+   * Generate the tooltip message according to given location code
+   * @author Naveen
+   * @param key string
+   * @returns string
+   */
   getToolTipData(key: string): string {
     Object.keys(this._inputData.dictionaries.locations)
     if (key in this._inputData.dictionaries.locations) {

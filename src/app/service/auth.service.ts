@@ -12,9 +12,15 @@ const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-ur
 export class AuthService {
 
   constructor(private http: HttpClient,
-    private _snackBar: MatSnackBar) { 
-      this.logout();
-    }
+    private _snackBar: MatSnackBar) {
+    this.logout();
+  }
+
+  /**
+   * Perform the authentication by calling API using client 
+   * secret and ID and save the jwt token into the local storage
+   * @author Naveen
+   */
   login() {
     this.http
       .post<Authentication>(`${environment.root}${environment.authUrl}`,
@@ -33,6 +39,11 @@ export class AuthService {
       );
   }
 
+  /**
+   * Set the authentication data into the local storage
+   * @author Naveen
+   * @param authResult Authentication
+   */
   private setSession(authResult: Authentication) {
     const expiresAt = moment().add(authResult.expires_in, 'second');
     localStorage.setItem('id_token', authResult.access_token);
@@ -40,24 +51,45 @@ export class AuthService {
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
   }
 
+  /**
+   * return the token save in localstorage
+   * @author Naveen
+   * @returns string
+   */
   getToken(): string {
     return localStorage.getItem('id_token');
   }
 
+  /**
+   * Removes the authentication data from local storage
+   * @author Naveen
+   */
   logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("user_name");
     localStorage.removeItem("expires_at");
   }
 
+  /**
+   * Check if user is logged in or not
+   * @author Naveen
+   */
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration());
   }
 
+  /**
+   * Check if user if logged out
+   * @author Naveen
+   */
   isLoggedOut() {
     return !this.isLoggedIn();
   }
 
+  /**
+   * Returns the token expiration time
+   * @author Naveen
+   */
   getExpiration() {
     const expiration = localStorage.getItem("expires_at");
     const expiresAt = JSON.parse(expiration);

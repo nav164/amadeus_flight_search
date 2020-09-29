@@ -58,6 +58,10 @@ export class FlightDestinationComponent implements OnInit {
     });
   }
 
+  /**
+   * Method will call the service to get the flight data from the API.
+   * @author Naveen
+   */
   getFlights() {
     this.flightInspirationalResponse = undefined;
     let departureDate: string = undefined;
@@ -70,24 +74,47 @@ export class FlightDestinationComponent implements OnInit {
     if (startDate && endDate) {
       departureDate = startDate + ',' + endDate;
     }
-    console.log('Departure date--> ', departureDate);
     if (!this.oneWayData.isOneWay) {
       duration = this.oneWayData.minDay + ',' + this.oneWayData.maxDay;
     }
 
     this.flightDestinationsService.getFlightDestinations(this.origin, departureDate,
-      this.oneWayData.isOneWay, duration, this.isNonStop, this.maxPrice, this.viewBy, 'body', false).subscribe((res:FlightInspirationalResponse) => {
+      this.oneWayData.isOneWay, duration, this.isNonStop, this.maxPrice, this.viewBy, 'body', false).subscribe((res: FlightInspirationalResponse) => {
         this.flightInspirationalResponse = res;
       });
   }
 
+  /**
+   * Method sets the data for one way selection
+   * @author Naveen
+   * @param data OneWayStatus
+   */
   getOneWayData(data: OneWayStatus) {
     this.oneWayData = data;
   }
 
-  showLinkDetails(linkDetail:FlightDestinationLinks) {
+  /**
+   * Opens the mat dialog popup to show the link details
+   * @author Naveen
+   * @param linkDetail FlightDestinationLinks
+   */
+  showLinkDetails(linkDetail: FlightDestinationLinks) {
     this.dialog.open(InfoDialogComponent, {
       data: linkDetail
     });
+  }
+
+  /**
+   * Return true only if input is an integer number
+   * @author Naveen
+   * @returns boolean
+   * @param event 
+   */
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 }

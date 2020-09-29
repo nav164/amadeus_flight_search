@@ -27,8 +27,12 @@ export class RangeOnReturnComponent implements OnInit {
     });
   }
 
+  /**
+   * Emit data for one way selection for its parent
+   * @author Naveen
+   * @param event any
+   */
   onUpdate(event: any) {
-    let emitData: any;
     if (this.minDay > this.maxDay) {
       this._snackBar.open('Min day cannot be greater then  max day!!', 'Duration', {
         duration: 2000,
