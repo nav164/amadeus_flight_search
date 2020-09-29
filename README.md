@@ -32,7 +32,7 @@ This application answers the question:
 You must have Node.js
 and its package manager (npm) installed.
 
-### Steps
+### Steps to start the application locally
 
 ```bash
 # Unzip the provided zipped folder OR clone the repo
