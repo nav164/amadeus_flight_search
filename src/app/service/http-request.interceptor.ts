@@ -64,14 +64,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
    * @param error HttpErrorResponse | Error500
    */
   handleError(error: HttpErrorResponse | Error500) {
-    console.log('Error ---> ',error);
     if (error instanceof HttpErrorResponse) {
       if (error.status === 400) {
         this._snackBar.open(error.error.error_description, error.error.title, {
           duration: 2000,
         });
       } else if (error.status === 401) {
-        this._snackBar.open('The access token provided in the Authorization header is invalid',
+        this._snackBar.open('Session expires please login again!!',
           'Invalid access token', {
           duration: 2000,
         });
@@ -97,11 +96,9 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   }
 
   handleCustomError(error: HttpErrorResponse) {
-    console.log('Error 404 ---> ',error.error['errors'])
     error.error['errors'].forEach(err => {
       this._snackBar.open(err.detail, err.title, {
         duration: 2000,
-        panelClass: 'my-custom-snackbar'
       });
     });
   }
