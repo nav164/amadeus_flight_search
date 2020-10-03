@@ -4,6 +4,7 @@ import { Authentication } from 'src/app/model/authentication'
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppConstant } from '../config/constant';
 
 const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 @Injectable({
@@ -31,7 +32,7 @@ export class AuthService {
           this.setSession(data);
         },
         error => {
-          this._snackBar.open('Authentication failed!! Try again', 'Login', {
+          this._snackBar.open(AppConstant.authentication_failed, AppConstant.login, {
             duration: 2000,
           });
           console.log(error);
@@ -46,9 +47,9 @@ export class AuthService {
    */
   private setSession(authResult: Authentication) {
     const expiresAt = moment().add(authResult.expires_in, 'second');
-    localStorage.setItem('id_token', authResult.access_token);
-    localStorage.setItem('user_name', authResult.username);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem(AppConstant.session_token_id, authResult.access_token);
+    localStorage.setItem(AppConstant.session_user_name, authResult.username);
+    localStorage.setItem(AppConstant.session_expire_at, JSON.stringify(expiresAt.valueOf()));
   }
 
   /**
@@ -57,7 +58,7 @@ export class AuthService {
    * @returns string
    */
   getToken(): string {
-    return localStorage.getItem('id_token');
+    return localStorage.getItem(AppConstant.session_token_id);
   }
 
   /**
@@ -65,9 +66,9 @@ export class AuthService {
    * @author Naveen
    */
   logout() {
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("user_name");
-    localStorage.removeItem("expires_at");
+    localStorage.removeItem(AppConstant.session_token_id);
+    localStorage.removeItem(AppConstant.session_user_name);
+    localStorage.removeItem(AppConstant.session_expire_at);
   }
 
   /**
@@ -91,7 +92,7 @@ export class AuthService {
    * @author Naveen
    */
   getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
+    const expiration = localStorage.getItem(AppConstant.session_expire_at);
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
   }

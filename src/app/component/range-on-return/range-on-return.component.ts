@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppConstant } from 'src/app/config/constant';
 
 @Component({
   selector: 'app-range-on-return',
@@ -34,7 +35,7 @@ export class RangeOnReturnComponent implements OnInit {
    */
   onUpdate(event: any) {
     if (this.minDay > this.maxDay) {
-      this._snackBar.open('Min day cannot be greater then  max day!!', 'Duration', {
+      this._snackBar.open(AppConstant.min_max_day_validation_msg, AppConstant.duration, {
         duration: 2000,
       });
       this.maxDay = this.minDay + 1;

@@ -7,6 +7,7 @@ import { FlightInspirationalResponse } from '../../model/flightInspirationalResp
 import { FlightDestinationLinks } from 'src/app/model/flightDestinationLinks';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
+import { AppConstant } from 'src/app/config/constant';
 
 interface OneWayStatus {
   isOneWay: boolean;
@@ -66,8 +67,14 @@ export class FlightDestinationComponent implements OnInit {
     this.flightInspirationalResponse = undefined;
     let departureDate: string = undefined;
     let duration: string = undefined;
-    const startDate = this.pipe.transform(this.departureDateForm.value.start, 'yyyy-MM-dd');
-    const endDate = this.pipe.transform(this.departureDateForm.value.end, 'yyyy-MM-dd');
+    const startDate = this.pipe.transform(this.departureDateForm.value.start, AppConstant.departure_date_format);
+    const endDate = this.pipe.transform(this.departureDateForm.value.end, AppConstant.departure_date_format);
+    if (this.origin === null || this.origin === undefined || this.origin.length !== 3) {
+      this._snackBar.open(AppConstant.mandatory_origin, AppConstant.mandatory_parameter, {
+        duration: 2000,
+      });
+      return;
+    }
     if (startDate) {
       departureDate = startDate;
     }

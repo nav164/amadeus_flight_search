@@ -11,22 +11,21 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { Inject, Injectable, Optional }                      from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { CustomHttpUrlEncodingCodec }                        from '../config/encoder';
+import { Inject, Injectable, Optional } from '@angular/core';
+import {
+    HttpClient, HttpHeaders, HttpParams,
+    HttpResponse, HttpEvent
+} from '@angular/common/http';
+import { CustomHttpUrlEncodingCodec } from '../config/encoder';
 
-import { Observable }                                        from 'rxjs';
-
-import { Error400 } from '../model/error400';
-import { Error404 } from '../model/error404';
-import { Error500 } from '../model/error500';
+import { Observable } from 'rxjs';
 import { FlightDestination } from '../model/flightDestination';
 
-import { BASE_PATH, COLLECTION_FORMATS }                     from '../config/variables';
-import { Configuration }                                     from '../config/configuration';
+import { BASE_PATH, COLLECTION_FORMATS } from '../config/variables';
+import { Configuration } from '../config/configuration';
 import { environment } from 'src/environments/environment';
 import { FlightInspirationalResponse } from '../model/flightInspirationalResponse';
+import { AppConstant } from '../config/constant';
 
 
 @Injectable()
@@ -36,7 +35,9 @@ export class FlightDestinationsService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient,
+        @Optional() @Inject(BASE_PATH) basePath: string,
+        @Optional() configuration: Configuration) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -51,7 +52,7 @@ export class FlightDestinationsService {
      * @return true: consumes contains 'multipart/form-data', false: otherwise
      */
     private canConsumeForm(consumes: string[]): boolean {
-        const form = 'multipart/form-data';
+        const form = AppConstant.multipart_form;
         for (const consume of consumes) {
             if (form === consume) {
                 return true;
@@ -77,47 +78,37 @@ export class FlightDestinationsService {
     public getFlightDestinations(origin: string, departureDate?: string, oneWay?: boolean, duration?: string, nonStop?: boolean, maxPrice?: number, viewBy?: 'COUNTRY' | 'DATE' | 'DESTINATION' | 'DURATION' | 'WEEK', observe?: 'body', reportProgress?: boolean): Observable<FlightInspirationalResponse>;
     public getFlightDestinations(origin: string, departureDate?: string, oneWay?: boolean, duration?: string, nonStop?: boolean, maxPrice?: number, viewBy?: 'COUNTRY' | 'DATE' | 'DESTINATION' | 'DURATION' | 'WEEK', observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FlightInspirationalResponse>>;
     public getFlightDestinations(origin: string, departureDate?: string, oneWay?: boolean, duration?: string, nonStop?: boolean, maxPrice?: number, viewBy?: 'COUNTRY' | 'DATE' | 'DESTINATION' | 'DURATION' | 'WEEK', observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FlightInspirationalResponse>>;
-    public getFlightDestinations(origin: string, departureDate?: string, oneWay?: boolean, duration?: string, nonStop?: boolean, maxPrice?: number, viewBy?: 'COUNTRY' | 'DATE' | 'DESTINATION' | 'DURATION' | 'WEEK', observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getFlightDestinations(origin: string, departureDate?: string, oneWay?: boolean, duration?: string, nonStop?: boolean, maxPrice?: number, viewBy?: 'COUNTRY' | 'DATE' | 'DESTINATION' | 'DURATION' | 'WEEK', observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
-        if (origin === null || origin === undefined) {
-            throw new Error('Required parameter origin was null or undefined when calling getFlightDestinations.');
-        }
-
-
-
-
-
-
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
         if (origin !== undefined && origin !== null) {
-            queryParameters = queryParameters.set('origin', <any>origin);
+            queryParameters = queryParameters.set(AppConstant.query_param_origin, <any>origin);
         }
         if (departureDate !== undefined && departureDate !== null) {
-            queryParameters = queryParameters.set('departureDate', <any>departureDate);
+            queryParameters = queryParameters.set(AppConstant.query_param_departure_date, <any>departureDate);
         }
         if (oneWay !== undefined && oneWay !== null) {
-            queryParameters = queryParameters.set('oneWay', <any>oneWay);
+            queryParameters = queryParameters.set(AppConstant.query_param_one_way, <any>oneWay);
         }
         if (duration !== undefined && duration !== null) {
-            queryParameters = queryParameters.set('duration', <any>duration);
+            queryParameters = queryParameters.set(AppConstant.query_param_duration, <any>duration);
         }
         if (nonStop !== undefined && nonStop !== null) {
-            queryParameters = queryParameters.set('nonStop', <any>nonStop);
+            queryParameters = queryParameters.set(AppConstant.query_param_non_stop, <any>nonStop);
         }
         if (maxPrice !== undefined && maxPrice !== null) {
-            queryParameters = queryParameters.set('maxPrice', <any>maxPrice);
+            queryParameters = queryParameters.set(AppConstant.query_param_max_price, <any>maxPrice);
         }
         if (viewBy !== undefined && viewBy !== null) {
-            queryParameters = queryParameters.set('viewBy', <any>viewBy);
+            queryParameters = queryParameters.set(AppConstant.query_param_view_by, <any>viewBy);
         }
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/vnd.amadeus+json',
-            'application/json'
+            AppConstant.header_amadeus_json,
+            AppConstant.header_json
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -126,8 +117,8 @@ export class FlightDestinationsService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/vnd.amadeus+json',
-            'application/json'
+            AppConstant.header_amadeus_json,
+            AppConstant.header_json
         ];
 
         return this.httpClient.get<FlightDestination>(`${this.basePath}${environment.flightDestination}`,

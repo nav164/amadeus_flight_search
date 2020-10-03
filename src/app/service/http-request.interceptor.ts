@@ -14,6 +14,7 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Error500 } from '../model/error500';
+import { AppConstant } from '../config/constant';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -36,7 +37,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     if (!request.url.includes(environment.authUrl)) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.authService.getToken()}`
+          Authorization: `${AppConstant.bearer} ${this.authService.getToken()}`
         }
       });
 
@@ -66,12 +67,16 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   handleError(error: HttpErrorResponse | Error500) {
     if (error instanceof HttpErrorResponse) {
       if (error.status === 400) {
-        this._snackBar.open(error.error.error_description, error.error.title, {
-          duration: 2000,
-        });
+        if(error.error.error_description && error.error.title) {
+          this._snackBar.open(error.error.error_description, error.error.title, {
+            duration: 2000,
+          });
+        } else {
+          this.handleCustomError(error);
+        }
       } else if (error.status === 401) {
-        this._snackBar.open('Session expires please login again!!',
-          'Invalid access token', {
+        this._snackBar.open(AppConstant.expire_session,
+          AppConstant.invalid_token, {
           duration: 2000,
         });
       } else if(error.status === 404) {

@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FlightInspirationalResponse } from 'src/app/model/flightInspirationalResponse';
 import { MatPaginator } from '@angular/material/paginator';
 import { FlightDestinationLinks } from 'src/app/model/flightDestinationLinks';
+import { AppConstant } from 'src/app/config/constant';
 
 @Component({
   selector: 'app-data-table',
@@ -57,8 +58,8 @@ export class DataTableComponent implements OnInit {
   getToolTipData(key: string): string {
     Object.keys(this._inputData.dictionaries.locations)
     if (key in this._inputData.dictionaries.locations) {
-      return `Sub type : ${this._inputData.dictionaries.locations[key].subType} | Name : ${this._inputData.dictionaries.locations[key].detailedName}`;
+      return `${AppConstant.subtype} : ${this._inputData.dictionaries.locations[key].subType} | ${AppConstant.name} : ${this._inputData.dictionaries.locations[key].detailedName}`;
     }
-    return `Data not available`;
+    return AppConstant.data_not_available;
   }
 }
