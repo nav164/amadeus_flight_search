@@ -25,6 +25,7 @@ This application answers the question:
 - [x] Interceptor for progress sppiner
 - [x] Tooltip to provide details of destination
 - [x] Feature to see the links in mat-dailog and copy the link to clipboard
+- [x] Internationalization of the application
 
 ## Getting Started
 
@@ -35,7 +36,7 @@ and its package manager (npm) installed.
 ### Steps to start the application locally
 
 ```bash
-# Unzip the provided zipped folder OR clone the repo
+# clone the repo
 https://github.com/nav164/amadeus_flight_search.git
 
 # change directory
