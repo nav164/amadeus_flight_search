@@ -1,20 +1,20 @@
 <div class="mat-app-background basic-container">
     <mat-card>
-        <mat-card-title>Search filters</mat-card-title>
+        <mat-card-title>{{'flight_destination.search_filters' | translate}}</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-content class="content">
             <form class="example-form">
                 <div class="row">
                     <div class="col">
                         <mat-form-field class="example-full-width">
-                            <mat-label>Origin</mat-label>
+                            <mat-label>{{'flight_destination.origin_lbl' | translate}}</mat-label>
                             <input matInput placeholder="Ex. MAD" maxlength="3" [(ngModel)]="origin" name="origin"
                                 (ngModelChange)="origin = $event.toUpperCase()">
                         </mat-form-field>
                     </div>
                     <div class="col">
                         <mat-form-field appearance="fill">
-                            <mat-label>Enter a departure date range</mat-label>
+                            <mat-label>{{'flight_destination.departure_date_input_lbl' | translate}}</mat-label>
                             <mat-date-range-input [formGroup]="departureDateForm" [rangePicker]="picker" [min]="minDate"
                                 [max]="maxDate">
                                 <input matStartDate placeholder="Start date" formControlName="start">
@@ -26,20 +26,22 @@
                     </div>
 
                     <div class="col">
-                        <mat-slide-toggle [(ngModel)]="isNonStop" name="isNonStop">Non Stop</mat-slide-toggle>
+                        <mat-slide-toggle [(ngModel)]="isNonStop" name="isNonStop">
+                            {{'flight_destination.non_stop_lbl' | translate}}</mat-slide-toggle>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <mat-form-field class="example-full-width">
-                            <mat-label>Max Price</mat-label>
+                            <mat-label>{{'flight_destination.max_price_lbl' | translate}}</mat-label>
                             <input matInput placeholder="Ex. 200" [(ngModel)]="maxPrice" type="number" min="0"
-                            oninput="this.value = Math.abs(this.value)" (keypress)="numberOnly($event)" name="maxPrice">
+                                oninput="this.value = Math.abs(this.value)" (keypress)="numberOnly($event)"
+                                name="maxPrice">
                         </mat-form-field>
                     </div>
                     <div class="col">
                         <mat-form-field appearance="fill">
-                            <mat-label>View by</mat-label>
+                            <mat-label>{{'flight_destination.view_by_lbl' | translate}}</mat-label>
                             <mat-select [(ngModel)]="viewBy" name="viewBy">
                                 <mat-option *ngFor="let viewByOpt of viewByOptions" [value]="viewByOpt.value">
                                     {{viewByOpt.key}}</mat-option>
@@ -56,7 +58,8 @@
         <mat-card-actions>
             <section>
                 <div class="example-button-row">
-                    <button mat-raised-button color="primary" (click)="getFlights()">Search flights</button>
+                    <button mat-raised-button color="primary"
+                        (click)="getFlights()">{{'flight_destination.search_flight_btn_lbl' | translate}}</button>
                 </div>
             </section>
         </mat-card-actions>

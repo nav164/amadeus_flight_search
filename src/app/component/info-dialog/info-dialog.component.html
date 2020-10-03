@@ -1,12 +1,13 @@
-<h1 mat-dialog-title>Link details for flight dates & flight offers</h1>
+<h1 mat-dialog-title>{{'info_dialog.dialog_title_lbl' | translate}}</h1>
 <mat-divider></mat-divider>
 <mat-dialog-content class="mat-typography">
-    <h3>Flight Dates</h3>
+    <h3>{{'info_dialog.flight_dates_lbl' | translate}}</h3>
     <p>{{data.flightDates}}</p>
-    <h3>Flight Offers</h3>
+    <h3>{{'info_dialog.flight_offers_lbl' | translate}}</h3>
     <p>{{data.flightOffers}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial [cdkCopyToClipboard]="value">Copy</button>
+    <button mat-button mat-dialog-close>{{'info_dialog.cancel_btn_lbl' | translate}}</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial
+        [cdkCopyToClipboard]="value">{{'info_dialog.copy_btn_lbl' | translate}}</button>
 </mat-dialog-actions>

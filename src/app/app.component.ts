@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service'
 import { LoadingService } from 'src/app/service/loading.service';
 import {delay} from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,13 @@ export class AppComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private authService: AuthService,
-    private _loading: LoadingService) { }
+    private _loading: LoadingService,
+    public translate: TranslateService) { }
 
   ngOnInit(): void {
+    this.translate.setDefaultLang('en');
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|fr|vi/) ? browserLang : 'en');
     this.authService.login();
     this.listenToLoading();
   }

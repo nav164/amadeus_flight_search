@@ -9,14 +9,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { HeaderComponent } from './component/header/header.component';
 import { AuthService } from 'src/app/service/auth.service'
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { LoadingService } from './service/loading.service';
 import { HttpRequestInterceptor } from './service/http-request.interceptor';
 import { RangeOnReturnComponent } from './component/range-on-return/range-on-return.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTableComponent } from './component/data-table/data-table.component';
 import { InfoDialogComponent } from './component/info-dialog/info-dialog.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +42,14 @@ import { InfoDialogComponent } from './component/info-dialog/info-dialog.compone
     DemoMaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [FlightDestinationsService, 
     AuthService, 

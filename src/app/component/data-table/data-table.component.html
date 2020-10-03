@@ -10,47 +10,47 @@
 
             <!-- Position Column -->
             <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.position' | translate}} </th>
                 <td mat-cell *matCellDef="let element; index as i;">{{dataSource.filteredData.indexOf(element) + 1}}
                 </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.type' | translate}} </th>
                 <td mat-cell *matCellDef="let element"> {{element.type ? element.type : 'NA'}} </td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="origin">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Origin </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.origin' | translate}} </th>
                 <td mat-cell *matCellDef="let element"> {{element.origin ? element.origin : 'NA'}} </td>
             </ng-container>
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="destination">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.destination' | translate}} </th>
                 <td mat-cell *matCellDef="let element" [matTooltip]="getToolTipData(element.destination)">
                     {{element.destination ? element.destination : 'NA'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="departureDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Departure Date </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.departure_date' | translate}} </th>
                 <td mat-cell *matCellDef="let element"> {{element.departureDate ? element.departureDate : 'NA'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="returnDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Return Date </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.return_date' | translate}} </th>
                 <td mat-cell *matCellDef="let element"> {{element.returnDate ? element.returnDate : 'NA'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.price' | translate}} </th>
                 <td mat-cell *matCellDef="let element"> {{element.price.total | currency: currencyUnit: true}} </td>
             </ng-container>
 
             <ng-container matColumnDef="links">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Links </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'datatable.link' | translate}} </th>
                 <td mat-cell *matCellDef="let element">
                     <button mat-raised-button (click)="showLinks(element.links)">Show Links</button>
                 </td>

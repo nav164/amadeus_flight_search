@@ -1,0 +1,36 @@
+{
+    "header": {
+        "title": "Welcome  to Flight Search"
+    },
+    "datatable": {
+        "position": "No.",
+        "type": "Type",
+        "origin": "Origin",
+        "destination": "Destination",
+        "departure_date": "Departure Date",
+        "return_date": "Reture Date",
+        "price": "Price",
+        "link": "Links"
+    },
+    "flight_destination": {
+        "search_filters": "Search filters",
+        "origin_lbl": "Origin",
+        "departure_date_input_lbl": "Enter a departure date range",
+        "non_stop_lbl": "Non Stop",
+        "max_price_lbl": "Max Price",
+        "view_by_lbl": "View By",
+        "search_flight_btn_lbl": "Search flights"
+    },
+    "info_dialog": {
+        "dialog_title_lbl": "Link details for flight dates & flight offers",
+        "flight_dates_lbl": "Flight Dates",
+        "flight_offers_lbl": "Flight Offers",
+        "cancel_btn_lbl": "Cancel",
+        "copy_btn_lbl": "Copy"
+    },
+    "range": {
+        "one_way_lbl": "One Way",
+        "min_day_lbl": "Min Day",
+        "max_day_lbl": "Max Day"
+    }
+}
