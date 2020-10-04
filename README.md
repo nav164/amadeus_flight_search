@@ -22,8 +22,8 @@ This application answers the question:
 - [x] Different search criteria
 - [x] Interceptor for error handling
 - [x] Interceptor to add jwt token into the header
-- [x] Interceptor for progress sppiner
-- [x] Tooltip to provide details of destination
+- [x] Interceptor for progress spinner
+- [x] Tooltip to provide details of destination in data table
 - [x] Feature to see the links in mat-dailog and copy the link to clipboard
 - [x] Internationalization of the application
 
