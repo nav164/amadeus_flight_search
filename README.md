@@ -26,6 +26,8 @@ This application answers the question:
 - [x] Tooltip to provide details of destination in data table
 - [x] Feature to see the links in mat-dailog and copy the link to clipboard
 - [x] Internationalization of the application
+- [x] Currency symbol in price column of data table based on currency defined in dictionary of response 
+
 
 ## Getting Started
 
