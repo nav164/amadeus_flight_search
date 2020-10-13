@@ -6,7 +6,7 @@ import { AppConstant } from '../config/constant';
   providedIn: 'root'
 })
 export class LoadingService {
-  
+  isDarkMode: boolean = false;
   loadingSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   /**
    * Contains in-progress loading requests

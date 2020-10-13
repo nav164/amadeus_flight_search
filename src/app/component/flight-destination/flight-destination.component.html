@@ -1,4 +1,4 @@
-<div class="mat-app-background basic-container">
+<div class="mat-app-background main__header">
     <mat-card>
         <mat-card-title>{{'flight_destination.search_filters' | translate}}</mat-card-title>
         <mat-divider></mat-divider>
@@ -64,8 +64,8 @@
             </section>
         </mat-card-actions>
     </mat-card>
-</div>
-<div class="mat-app-background basic-container" *ngIf="flightInspirationalResponse">
-    <app-data-table [inputData]="flightInspirationalResponse" (linkDetailsEmitter)="showLinkDetails($event)">
-    </app-data-table>
+    <div class="main__table" *ngIf="flightInspirationalResponse">
+        <app-data-table [inputData]="flightInspirationalResponse" (linkDetailsEmitter)="showLinkDetails($event)">
+        </app-data-table>
+    </div>
 </div>

@@ -5,16 +5,23 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppConstant } from '../config/constant';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  loginMap = new Map();
+  //loggedIn: boolean;
   constructor(private http: HttpClient,
-    private _snackBar: MatSnackBar) {
-    this.logout();
+    private _snackBar: MatSnackBar,
+    public router: Router) {
+ /*   if(this.loggedIn) {
+      this.logout();
+    } */
+    this.loginMap.set('naveen.deism@gmail.com','rfvrfv');
   }
 
   /**
@@ -22,22 +29,11 @@ export class AuthService {
    * secret and ID and save the jwt token into the local storage
    * @author Naveen
    */
-  login() {
-    this.http
+  login(): Observable<Authentication> {
+    return this.http
       .post<Authentication>(`${environment.root}${environment.authUrl}`,
         `grant_type=client_credentials&client_id=${environment.clientId}&client_secret=${environment.clientSecret}`,
-        { headers: headers })
-      .subscribe(
-        data => {
-          this.setSession(data);
-        },
-        error => {
-          this._snackBar.open(AppConstant.authentication_failed, AppConstant.login, {
-            duration: 2000,
-          });
-          console.log(error);
-        }
-      );
+        { headers: headers });
   }
 
   /**
@@ -69,6 +65,7 @@ export class AuthService {
     localStorage.removeItem(AppConstant.session_token_id);
     localStorage.removeItem(AppConstant.session_user_name);
     localStorage.removeItem(AppConstant.session_expire_at);
+    this.router.navigateByUrl('login');
   }
 
   /**
@@ -95,5 +92,27 @@ export class AuthService {
     const expiration = localStorage.getItem(AppConstant.session_expire_at);
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
+  }
+
+  loginApp(email: string, password: string) {
+    if(this.loginMap.has(email) && this.loginMap.get(email) === password) {
+      this.login().subscribe(
+        data => {
+          this.setSession(data);
+          console.log('Login done --> ', this.getToken())
+          this.router.navigateByUrl('home');
+        },
+        error => {
+          this._snackBar.open(AppConstant.authentication_failed, AppConstant.login, {
+            duration: 2000,
+          });
+          console.log(error);
+        }
+      );
+    } else {
+      this._snackBar.open('Incorrect username or password!!', AppConstant.login, {
+        duration: 5000,
+      });
+    }
   }
 }

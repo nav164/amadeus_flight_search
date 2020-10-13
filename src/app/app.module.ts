@@ -18,6 +18,11 @@ import { DataTableComponent } from './component/data-table/data-table.component'
 import { InfoDialogComponent } from './component/info-dialog/info-dialog.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { SideNavComponent } from './component/side-nav/side-nav.component';
+import { LoginComponent } from './component/login/login.component';
+import { HomeComponent } from './component/home/home.component';
+import { MenuCardComponent } from './component/menu-card/menu-card.component';
+import { AppGuard } from './guards/app.guard';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,7 +35,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     RangeOnReturnComponent,
     DataTableComponent,
-    InfoDialogComponent
+    InfoDialogComponent,
+    SideNavComponent,
+    LoginComponent,
+    HomeComponent,
+    MenuCardComponent
   ],
   entryComponents: [
     InfoDialogComponent
@@ -51,7 +60,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
   })
   ],
-  providers: [FlightDestinationsService, 
+  providers: [
+    AppGuard,
+    FlightDestinationsService, 
     AuthService, 
     LoadingService,
     {

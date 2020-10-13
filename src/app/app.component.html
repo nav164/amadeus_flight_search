@@ -4,12 +4,11 @@
   </mat-progress-spinner>
 </div>
 
-<div class="site-container">
-  <div class="site-header">
-    <app-header></app-header>
-  </div>
-  <div class="site-content">
-    <app-flight-destination></app-flight-destination>
+<app-side-nav [(showMenu)]="showMenu"></app-side-nav>
+<main class="root__container" [ngClass]="{'root__container-dark': darkModeActive}">
+  <app-header [(showMenu)]="showMenu" (isDarkMode)="modeToggleSwitch($event)"></app-header>
+  <div class="main-container__bg">
+    <!-- <app-flight-destination></app-flight-destination>  -->
     <router-outlet></router-outlet>
   </div>  
-</div>
+</main>

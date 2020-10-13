@@ -1,13 +1,130 @@
+
+// Imports for Angular Material Theming
+@import '~@angular/material/theming';
+@include mat-core();
+
+$app-primary: mat-palette($mat-light-blue);
+$app-accent: mat-palette($mat-light-blue);
+$app-warn: mat-palette($mat-red);
+
+$light-primary: mat-palette($mat-indigo);
+$light-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$theme-dark: mat-dark-theme($app-primary, $app-accent, $app-warn);
+$theme-light: mat-light-theme($light-primary, $light-accent, $app-warn);
+
+// Light theme
+
+$light-theme:   mat-light-theme($light-primary, $light-accent);
+
+// Dark theme
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+.color-scheme-dark {
+    @include angular-material-theme($dark-theme);
+}
+
+.color-scheme-light {
+    @include angular-material-theme($theme-light);
+}
+
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 .basic-container {
-    padding: 30px;
+    padding: 5px;
+    width: 1234px;
   }
 .version-info {
     font-size: 8pt;
     float: right;
     margin: 8px;
+}
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.ngui-auto-complete > ul {
+  box-shadow: 0 0 2rem rgba(0, 0, 255, 0.3) !important;
+  border: none !important;
+  border-radius: 1rem;
+}
+
+.ngui-auto-complete .item {
+  padding: 1rem !important;
+  cursor: pointer;
+}
+
+.ngui-auto-complete .item:hover {
+  background-color: rgba(0, 0, 255, 0.1) !important;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slidedown {
+  from {
+    transform: translateY(-25%);
+  }
+  to {
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes slideright {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes scaleup {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+
+}
+
+@keyframes scaleup-circle {
+  from {
+    transform-origin: top;
+    transform: scale(0) translateY(-50%) rotate(0deg);
+  }
+  to {
+    transform-origin: center;
+    transform: scale(1) translateY(-50%) rotate(360deg);
+  }
+
 }

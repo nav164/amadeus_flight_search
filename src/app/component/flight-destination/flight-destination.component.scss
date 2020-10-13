@@ -12,3 +12,27 @@
 .sub-container {
     padding-right: 30px;
 }
+
+.mat-app-background {
+    background-color: #fafafa00;
+    color: rgba(0,0,0,.87);
+}
+
+.main__header {
+    height: 100vh;
+    width: 100vw;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    min-height: 4rem;
+    align-items: center;
+    animation: slidedown 0.5s ease-in-out, fadein 1s ease-in-out;
+}
+
+.main__table {
+    margin-top: 5px;
+    animation: slidedown 0.5s ease-in-out, fadein 1s ease-in-out;
+}
+
+  

@@ -1,0 +1,14 @@
+<section class="weather__card" (click)="openDetails()"
+         [ngClass]="{'weather__card-dark': darkMode}">
+  <span class="city-name__text">{{menu.title}}</span>
+  <div class="weather-icon__container">
+    <ng-container viewBox="2050 -845 262 262">
+        <img class="logo" src="{{menu.imageUrl}}">
+    </ng-container>
+  </div>
+  <div class="temperature-text__container">
+    <span class="weather-condition__text">{{menu.description}}</span>
+  </div>
+
+</section>
+

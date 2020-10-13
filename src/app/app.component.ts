@@ -12,16 +12,18 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
   title = 'amadeus-flight-search';
   loading: boolean = false;
-
-  constructor(private authService: AuthService,
-    private _loading: LoadingService,
+  darkModeActive: boolean;
+  showMenu: boolean = false;
+  constructor(private _loading: LoadingService,
     public translate: TranslateService) { }
+
+  loggedIn = true;
+  sub1;
 
   ngOnInit(): void {
     this.translate.setDefaultLang('en');
     const browserLang = this.translate.getBrowserLang();
     this.translate.use(browserLang.match(/en|fr|vi/) ? browserLang : 'en');
-    this.authService.login();
     this.listenToLoading();
   }
 
@@ -37,5 +39,10 @@ export class AppComponent implements OnInit {
       .subscribe((loading) => {
         this.loading = loading;
       });
+  }
+
+  modeToggleSwitch(val: boolean) {
+    this.darkModeActive = val;
+    this._loading.isDarkMode = val;
   }
 }
