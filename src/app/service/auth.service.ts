@@ -14,13 +14,9 @@ const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-ur
 })
 export class AuthService {
   loginMap = new Map();
-  //loggedIn: boolean;
   constructor(private http: HttpClient,
     private _snackBar: MatSnackBar,
     public router: Router) {
- /*   if(this.loggedIn) {
-      this.logout();
-    } */
     this.loginMap.set('naveen.deism@gmail.com','rfvrfv');
   }
 
@@ -113,6 +109,25 @@ export class AuthService {
       this._snackBar.open('Incorrect username or password!!', AppConstant.login, {
         duration: 5000,
       });
+    }
+  }
+
+  /**
+   * Method will sign up the new user
+   * @param email 
+   * @param password 
+   */
+  signUp(email: string, password: string) {
+    if(this.loginMap.has(email)) {
+      this._snackBar.open('Email already registered!!', 'Sign up', {
+        duration: 5000,
+      });
+    } else {
+      this.loginMap.set(email, password);
+      this._snackBar.open('Sign up completed successfully!!', 'Success', {
+        duration: 5000,
+      });
+      this.router.navigateByUrl('login');
     }
   }
 }

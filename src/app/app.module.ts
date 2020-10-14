@@ -23,6 +23,7 @@ import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { MenuCardComponent } from './component/menu-card/menu-card.component';
 import { AppGuard } from './guards/app.guard';
+import { SignupComponent } from './component/signup/signup.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,7 +40,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SideNavComponent,
     LoginComponent,
     HomeComponent,
-    MenuCardComponent
+    MenuCardComponent,
+    SignupComponent
   ],
   entryComponents: [
     InfoDialogComponent

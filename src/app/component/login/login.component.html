@@ -5,10 +5,16 @@
         <span class="login-header">Login</span>
         <!-- login form -->
   
-        <form class="login-form" (ngSubmit)="login($event)" #authform="ngForm">
-          <input ngModel type="email" autofocus placeholder="Email" name="email" class="login-input" required>
-          <input ngModel type="password" placeholder="Password" name="password" class="login-input" minlength="6"
-                 required>
+        <form class="login-form" [formGroup]="loginform" (ngSubmit)="login($event)" #authform="ngForm">
+          <input ngModel type="email" autofocus placeholder="Email" name="email" class="login-input" formControlName="email">
+            <div *ngIf="(email.invalid && email.touched) || email.dirty">
+              <small *ngIf="email.errors?.required" class="text-danger">Email is required</small>
+              <small *ngIf="email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+            </div>
+          <input ngModel type="password" placeholder="Password" name="password" class="login-input" minlength="6" formControlName="password">
+            <div *ngIf="(password.invalid && password.touched) || password.dirty">
+              <small *ngIf="password.errors?.required" class="text-danger">Password is required</small>
+            </div>
           <input type="submit" name="submit" value="Login" class="login-btn" [class.btn-disabled]="!authform.form.valid"
                  [disabled]="!authform.form.valid">
         </form>

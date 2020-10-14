@@ -17,7 +17,6 @@ export class MenuCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.darkMode = false;
   }
 
   openDetails() {
