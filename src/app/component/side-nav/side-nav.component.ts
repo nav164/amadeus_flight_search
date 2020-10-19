@@ -14,7 +14,8 @@ export class SideNavComponent implements OnInit {
   userEmail = 'naveen.deism@gmail.com'; 
   constructor(public router: Router,
     public loadingService: LoadingService,
-    private authService: AuthService) { }
+    public authService: AuthService) {
+     }
 
   ngOnInit(): void {
   }

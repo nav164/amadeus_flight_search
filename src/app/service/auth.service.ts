@@ -14,6 +14,7 @@ const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-ur
 })
 export class AuthService {
   loginMap = new Map();
+  userLoggedIn: string;
   constructor(private http: HttpClient,
     private _snackBar: MatSnackBar,
     public router: Router) {
@@ -45,12 +46,20 @@ export class AuthService {
   }
 
   /**
-   * return the token save in localstorage
+   * Return the token saved in localstorage
    * @author Naveen
    * @returns string
    */
   getToken(): string {
     return localStorage.getItem(AppConstant.session_token_id);
+  }
+
+  /**
+   * Return the username saved in local storage
+   * @author Naveen
+   */
+  getDisplayUserName(): string {
+    return localStorage.getItem('display_email');
   }
 
   /**
@@ -95,7 +104,7 @@ export class AuthService {
       this.login().subscribe(
         data => {
           this.setSession(data);
-          console.log('Login done --> ', this.getToken())
+          localStorage.setItem('display_email', email);
           this.router.navigateByUrl('home');
         },
         error => {
